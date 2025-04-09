@@ -7,10 +7,15 @@ import { View } from 'react-native';
 const HomeScreen = ({route,navigation}:any) => {
 
     const { user } = route.params; // obtener el usuario de la ruta
-    const navigate = useNavigation<any>();
+    // const navigate = useNavigation<any>();
 
     const handlePress = () => {
-        navigate.navigate('ListProductsScreen');
+        navigation.navigate('ListProductsScreen');
+    }
+
+    const handlePressCategories = () => {
+        // navigate.navigate('CategoriesScreen');
+        navigation.navigate('CategoriesScreen');
     }
 
     const cerrarSesion = async() => {
@@ -30,7 +35,7 @@ const HomeScreen = ({route,navigation}:any) => {
             <Text style={styles.buttonText}>Lista de Productos</Text>
           
         </Pressable>
-        <Pressable style={styles.button} onPress={handlePress}>
+        <Pressable style={styles.button} onPress={handlePressCategories}>
             <Text style={styles.buttonText}>Categorias</Text>
         </Pressable>
 
