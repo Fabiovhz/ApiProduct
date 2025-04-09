@@ -44,6 +44,7 @@ const ListProductsScreen = () => {
         }
     };
 
+    
     useEffect(() => {
         fetchProducts(page); // Cargar productos cuando la página cambie
        
