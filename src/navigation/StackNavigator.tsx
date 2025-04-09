@@ -17,8 +17,8 @@ const StackNavigator = () => {
       <Stack.Screen name="Register" component={RegisterScreen} options={{ title: 'Inicio' }} />
       <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Inicio' }} />
       <Stack.Screen name="ListProductsScreen" component={ListProductsScreen} options={{ title: 'Lista de Productos' }} />
-      <Stack.Screen name="CategoriesScreen" component={CategoriesScreen} />
-      <Stack.Screen name="ProductsByCategoryScreen" component={ProductsByCategoryScreen} />
+      <Stack.Screen name="CategoriesScreen" component={CategoriesScreen} options={{ title: 'Lista de Categorias' }} />
+      <Stack.Screen name="ProductsByCategoryScreen" component={ProductsByCategoryScreen} options={{title:'Productos'}} />
       {/* <Stack.Screen name='SplashScreen' component={SplashScreen} options={{title:'Bienvenido'}}></Stack.Screen> */}
     </Stack.Navigator>
   )

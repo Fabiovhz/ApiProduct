@@ -1,37 +1,41 @@
 import React from 'react'
 import { Product } from '../types/character'
 import { useNavigation } from '@react-navigation/native'
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Button, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Image } from 'react-native';
 
 const ProductsCard = ({ products }: { products: Product }) => {
   const navigate = useNavigation<any>();
   return (
-    <Pressable>
-      <View style={styles.cardContainer}>
-        {/* {products.images.length > 0 && (
-          <Image source={{ uri: products.images[0] }} style={styles.image} />
-        )} */}
+    <View>
+      <Pressable>
+        <View style={styles.cardContainer}>
+          {/* {products.images.length > 0 && (
+            <Image source={{ uri: products.images[0] }} style={styles.image} />
+          )} */}
 
-        {/* Si no hay imágenes disponibles en el array `images`, se muestra la imagen de `thumbnail`. 
-   Esto asegura que siempre haya una imagen visible del producto, incluso si no tiene una imagen principal en el array `images`. */}
+          {/* Si no hay imágenes disponibles en el array `images`, se muestra la imagen de `thumbnail`. 
+     Esto asegura que siempre haya una imagen visible del producto, incluso si no tiene una imagen principal en el array `images`. */}
 
-        <Image
-          source={{ uri: products.images?.[0] ? products.images[0] : products.thumbnail }}
-          style={styles.image}
-        />
-        <Text style={styles.title}>{products.title}</Text>
-        <Text style={styles.description}>{products.description}</Text>
-        <Text style={styles.brand}>{products.brand}</Text>
-        <Text style={styles.price}>Price: ${products.price}</Text>
-      </View>
-    </Pressable>
+          <Image
+            source={{ uri: products.images?.[0] ? products.images[0] : products.thumbnail }}
+            style={styles.image}
+          />
+          <Text style={styles.title}>{products.title}</Text>
+          <Text style={styles.description}>{products.description}</Text>
+          <Text style={styles.brand}>{products.brand}</Text>
+          <Text style={styles.price}>Price: ${products.price}</Text>
+        </View>
+      </Pressable>
+
+
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   cardContainer: {
-    marginBottom: 15,
+    marginBottom: 5,
     padding: 15,
     backgroundColor: '#ffffff', // Fondo blanco para la tarjeta
     borderRadius: 12,
@@ -40,6 +44,10 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 }, // Sombra
     shadowOpacity: 0.1, // Sombra
     shadowRadius: 5,  // Sombra
+    marginRight: 10,
+    marginLeft: 10,
+    marginTop: 10,
+    
   },
   image: {
     width: '100%',

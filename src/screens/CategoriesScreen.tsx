@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, ActivityIndicator, Button, StyleSheet } from 'react-native';
 import { getCategories } from '../api/api';
+import { CategoryResponse } from '../types/character';
 
 const CategoriesScreen = ({ navigation }: any) => {
-  const [categories, setCategories] = useState<string[] | null>(null);
+  // const [categories, setCategories] = useState<string[] | null>(null);
+
+  const [categories, setCategories] = useState<CategoryResponse[] | null>(null);
+
+
+
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -18,7 +24,7 @@ const CategoriesScreen = ({ navigation }: any) => {
   // 1) Mientras carga
   if (categories === null && error === null) {
     return (
-      <View style={{ flex:1,justifyContent:'center',alignItems:'center' }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <ActivityIndicator size="large" />
       </View>
     );
@@ -27,34 +33,59 @@ const CategoriesScreen = ({ navigation }: any) => {
   // 2) Si hubo error
   if (error) {
     return (
-      <View style={{ flex:1,justifyContent:'center',alignItems:'center',padding:16 }}>
-        <Text style={{ color:'red', fontSize:16 }}>{error}</Text>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 16 }}>
+        <Text style={{ color: 'red', fontSize: 16 }}>{error}</Text>
       </View>
     );
   }
+  console.log(categories)
 
-  // 3) Si ya cargó correctamente (categories es string[])
+  
   return (
-    <View style={{ flex: 1, padding: 16 }}>
-      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 12 }}>
-        Categorías
-      </Text>
+    <View style={{ flex: 1, padding: 16, marginTop: 10, marginBottom: 50 }}>
       <FlatList
-        data={categories!}
-        keyExtractor={item => item}
+        data={categories}
+        keyExtractor={(item, index) => `${item.slug}-${index}`}
         renderItem={({ item }) => (
           <TouchableOpacity
-            style={{ padding: 12, borderBottomWidth: 1, borderColor: '#eee' }}
-            onPress={() =>
-              navigation.navigate('ProductsByCategory', { category: item })
-            }
+            style={styles.button}
+            onPress={() => {
+              // puedes navegar o filtrar productos aquí
+              console.log('Categoría seleccionada:', item.name);
+              navigation.navigate('ProductsByCategoryScreen', { category: item.slug });
+            }}
           >
-            <Text style={{ fontSize: 18 }}>{item}</Text>
+            <Text style={styles.buttonText}>{item.name}</Text>
           </TouchableOpacity>
         )}
       />
     </View>
   );
 };
+
+
+
+const styles = StyleSheet.create({
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+  },
+  button: {
+    backgroundColor: '#158d21',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    marginVertical: 6,
+    borderRadius: 8,
+    marginLeft: 10,
+    marginRight: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+});
 
 export default CategoriesScreen;

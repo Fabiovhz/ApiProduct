@@ -1,14 +1,19 @@
 import axios from 'axios';
-import { Product } from '../types/character';
+import { Category, CategoryResponse, Product } from '../types/character';
 
 const api = axios.create({
-  baseURL: 'https://dummyjson.com/products', 
+  // baseURL: 'https://dummyjson.com', 
+  baseURL: 'https://dummyjson.com', 
 });
 
 
 
 // Traer categorías: ["smartphones", "laptops", ...]
-export const getCategories = () => api.get<string[]>('/products/categories');
+// export const getCategories = () => api.get<Category[]>('/products/categories');
+
+export const getCategories = () => api.get<CategoryResponse[]>(
+  '/products/categories'
+);
 
 // Productos por categoría: category = "laptops"
 export const getProductsByCategory = (category: string) =>

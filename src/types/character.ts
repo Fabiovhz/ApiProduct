@@ -30,6 +30,13 @@ export interface Product {
     thumbnail:            string;
 }
 
+
+export interface CategoryResponse {
+    slug: string;
+    name: string;
+    url: string;
+  }
+
 export enum AvailabilityStatus {
     InStock = "In Stock",
     LowStock = "Low Stock",
