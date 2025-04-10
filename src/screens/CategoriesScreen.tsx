@@ -21,7 +21,7 @@ const CategoriesScreen = ({ navigation }: any) => {
       });
   }, []);
 
-  // 1) Mientras carga
+  
   if (categories === null && error === null) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -30,7 +30,7 @@ const CategoriesScreen = ({ navigation }: any) => {
     );
   }
 
-  // 2) Si hubo error
+  
   if (error) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 16 }}>
@@ -50,7 +50,7 @@ const CategoriesScreen = ({ navigation }: any) => {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              // puedes navegar o filtrar productos aquí
+              
               console.log('Categoría seleccionada:', item.name);
               navigation.navigate('ProductsByCategoryScreen', { category: item.slug });
             }}

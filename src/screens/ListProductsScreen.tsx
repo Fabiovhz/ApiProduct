@@ -61,7 +61,6 @@ const ListProductsScreen = () => {
             <ScrollView 
                 ref={scrollViewRef}
                 contentContainerStyle={{ paddingBottom: 90 }}
-                // Opcional: puedes agregar esto para mejorar el comportamiento
                 onContentSizeChange={() => scrollViewRef.current?.scrollTo({ y: 0, animated: false })}
             >
                 {products.map((product) => (
